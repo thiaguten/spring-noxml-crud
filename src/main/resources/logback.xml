@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="br.com.exemplo" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.hibernate" level="INFO"/>
+    <logger name="org.hsqldb" level="INFO"/>
+    <logger name="com.zaxxer" level="INFO"/>
+    <logger name="org.junit" level="INFO"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
