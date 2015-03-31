@@ -15,11 +15,11 @@ import br.com.thiaguten.spring.model.Usuario;
 
 @Repository("usuarioDAO")
 public class UsuarioDAOImpl extends AbstractDAO<Usuario, Long> implements UsuarioDAO {
-	
+
 	@Override
 	public List<Usuario> pesquisar(Usuario usuario) {
 		if (usuario != null) {
-			List<Criterion> criterios = new ArrayList<Criterion>();
+			List<Criterion> criterios = new ArrayList<>();
 			if (StringUtils.hasText(usuario.getNome())) {
 				criterios.add(Restrictions.ilike("nome", usuario.getNome(), MatchMode.ANYWHERE));
 			}
@@ -27,19 +27,20 @@ public class UsuarioDAOImpl extends AbstractDAO<Usuario, Long> implements Usuari
 		}
 		return Collections.emptyList();
 	}
-	
+
 	@Override
 	public Long contarPorEmail(Usuario usuario) {
-		if (usuario != null && StringUtils.hasText(usuario.getNome())) {
-			List<Criterion> criterios = new ArrayList<Criterion>();
+		if (usuario != null && StringUtils.hasText(usuario.getEmail())) {
+			List<Criterion> criterios = new ArrayList<>();
 			criterios.add(Restrictions.ilike("email", usuario.getEmail(), MatchMode.EXACT));
 			if (usuario.hasID()) {
-				// necessario para excluir da contagem a propria entidade que esta sendo alterada
+				// necessario para excluir da contagem a propria entidade que
+				// esta sendo alterada
 				criterios.add(Restrictions.ne("id", usuario.getId()));
 			}
 			return contarPorCriteria(criterios);
 		}
 		return 0L;
 	}
-	
+
 }

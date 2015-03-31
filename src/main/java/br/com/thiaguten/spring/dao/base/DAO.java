@@ -15,11 +15,11 @@ public interface DAO<T extends Persistable<? extends Serializable>, PK extends S
 
 	T recuperar(PK pk);
 
-	T update(T t);
+	T alterar(T t);
 
-	void delete(T t);
+	void deletar(T t);
 
-	void deleteById(PK pk);
+	void deletarPorId(PK pk);
 
 	List<T> listar();
 

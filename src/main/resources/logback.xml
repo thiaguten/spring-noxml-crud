@@ -8,7 +8,7 @@
         </encoder>
     </appender>
 
-    <logger name="br.com.exemplo" level="DEBUG"/>
+    <logger name="br.com.thiaguten.spring" level="DEBUG"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.hibernate" level="INFO"/>
     <logger name="org.hsqldb" level="INFO"/>

@@ -21,35 +21,35 @@ public class Usuario extends AbstractModel {
 	private static final long serialVersionUID = -5467564907381165L;
 
 	@Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
+	@Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	@NotBlank(message = "{NotBlank.usuario.nome}")
 	@Column(name = "NOME", nullable = false, length = 100)
-    private String nome;
-	
-    @NotNull(message = "{NotNull.usuario.idade}")
-    @Digits(integer = 3, fraction = 0, message = "{Digits.usuario.idade}")
-    @Column(name = "IDADE", nullable = false)
-    private Integer idade;
+	private String nome;
 
-    @NotBlank(message = "{NotBlank.usuario.email}")
-    @Email(message = "{Email.usuario.email}")
-    @Column(name = "EMAIL", nullable = false, unique = true, length = 50)
-    private String email;
-	
+	@NotNull(message = "{NotNull.usuario.idade}")
+	@Digits(integer = 3, fraction = 0, message = "{Digits.usuario.idade}")
+	@Column(name = "IDADE", nullable = false)
+	private Integer idade;
+
+	@NotBlank(message = "{NotBlank.usuario.email}")
+	@Email(message = "{Email.usuario.email}")
+	@Column(name = "EMAIL", nullable = false, unique = true, length = 50)
+	private String email;
+
 	public Usuario() {
-		
+
 	}
-	
+
 	public Usuario(String nome, Integer idade, String email) {
 		super();
 		this.nome = nome;
 		this.idade = idade;
 		this.email = email;
 	}
-	
+
 	@Override
 	public Long getId() {
 		return id;
@@ -87,5 +87,5 @@ public class Usuario extends AbstractModel {
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", email=" + email + "]";
 	}
-	
+
 }

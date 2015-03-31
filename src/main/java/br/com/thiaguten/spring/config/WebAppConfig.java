@@ -26,50 +26,51 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("home");
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
+		registry.addResourceHandler("/resources/**")
+				.addResourceLocations("/resources/").setCachePeriod(31556926);
 	}
 
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		registry.jsp("/WEB-INF/views/", ".jsp");
 	}
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(getLocaleChangeInterceptor());
 	}
-	
+
 	@Override
 	public Validator getValidator() {
 		return getLocalValidatorFactoryBean();
 	}
-	
+
 	@Bean(name = "validator")
 	public LocalValidatorFactoryBean getLocalValidatorFactoryBean() {
 		LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
 		localValidatorFactoryBean.setValidationMessageSource(getMessageSource());
 		return localValidatorFactoryBean;
 	}
-	
+
 	@Bean(name = "messageSource")
-    public ReloadableResourceBundleMessageSource getMessageSource() {
-        ReloadableResourceBundleMessageSource resource = new ReloadableResourceBundleMessageSource();
-        resource.setBasename("classpath:i18n/messages");
-        resource.setDefaultEncoding("UTF-8");
-        resource.setFallbackToSystemLocale(true);
-        return resource;
-    }
-	
+	public ReloadableResourceBundleMessageSource getMessageSource() {
+		ReloadableResourceBundleMessageSource resource = new ReloadableResourceBundleMessageSource();
+		resource.setBasename("classpath:i18n/messages");
+		resource.setDefaultEncoding("UTF-8");
+		resource.setFallbackToSystemLocale(true);
+		return resource;
+	}
+
 	@Bean(name = "handlerInterceptor")
 	public LocaleChangeInterceptor getLocaleChangeInterceptor() {
 		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
 		localeChangeInterceptor.setParamName("lang");
 		return localeChangeInterceptor;
 	}
-	
+
 	@Bean(name = "localeResolver")
 	public CookieLocaleResolver getCookieLocaleResolver() {
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
@@ -78,5 +79,5 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 		cookieLocaleResolver.setDefaultLocale(new Locale("pt", "BR"));
 		return cookieLocaleResolver;
 	}
-	
+
 }

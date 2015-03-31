@@ -21,21 +21,21 @@ public abstract class AbstractDAO<T extends Persistable<? extends Serializable>,
 
 	private final Class<T> entidadeClazz;
 	private final Class<PK> chavePrimariaEntidadeClazz;
-	
+
 	private EntityManager entityManager;
-	
+
 	public AbstractDAO() {
 		java.lang.reflect.ParameterizedType genericSuperClass = (java.lang.reflect.ParameterizedType) getClass().getGenericSuperclass();
-        this.entidadeClazz = (Class<T>) genericSuperClass.getActualTypeArguments()[0];
-        this.chavePrimariaEntidadeClazz = (Class<PK>) genericSuperClass.getActualTypeArguments()[1];
+		this.entidadeClazz = (Class<T>) genericSuperClass.getActualTypeArguments()[0];
+		this.chavePrimariaEntidadeClazz = (Class<PK>) genericSuperClass.getActualTypeArguments()[1];
 	}
-	
+
 	// metodos convenientes, caso queira utilizar criteria do hibernate
-	
+
 	protected final Session getSession() {
 		return (Session) entityManager.getDelegate();
 	}
-	
+
 	protected List<T> pesquisarPorCriteria(List<Criterion> criterios) {
 		Criteria criteria = getSession().createCriteria(getEntidadeClazz());
 		if (criterios != null) {
@@ -45,7 +45,7 @@ public abstract class AbstractDAO<T extends Persistable<? extends Serializable>,
 		}
 		return criteria.list();
 	}
-	
+
 	protected long contarPorCriteria(List<Criterion> criterios) {
 		Criteria criteria = getSession().createCriteria(getEntidadeClazz());
 		criteria.setProjection(Projections.rowCount());
@@ -55,21 +55,21 @@ public abstract class AbstractDAO<T extends Persistable<? extends Serializable>,
 				criteria.add(criterio);
 			}
 		}
-        return ((Long) criteria.uniqueResult());
-    }
-	
+		return ((Long) criteria.uniqueResult());
+	}
+
 	// metodos sobrescritos
-	
+
 	@Override
 	public Class<T> getEntidadeClazz() {
 		return entidadeClazz;
 	}
-	
+
 	@Override
 	public Class<PK> getChavePrimariaClazz() {
 		return chavePrimariaEntidadeClazz;
 	}
-	
+
 	@Override
 	public T salvar(T t) {
 		if (t.getId() != null) {
@@ -79,49 +79,49 @@ public abstract class AbstractDAO<T extends Persistable<? extends Serializable>,
 		}
 		return t;
 	}
-	
+
 	@Override
 	public T recuperar(PK pk) {
 		return entityManager.find(entidadeClazz, pk);
 	}
-	
+
 	@Override
-	public T update(T t) {
+	public T alterar(T t) {
 		return salvar(t);
 	}
-	
+
 	@Override
-	public void delete(T t) {
+	public void deletar(T t) {
 		deletarPorEntidadeOuPorID(t, null);
 	}
-	
+
 	@Override
-	public void deleteById(PK pk) {
+	public void deletarPorId(PK pk) {
 		deletarPorEntidadeOuPorID(null, pk);
 	}
-	
+
 	@Override
 	public List<T> listar() {
 		Query query = entityManager.createQuery("SELECT t FROM " + entidadeClazz.getSimpleName() + " t");
 		return query.getResultList();
 	}
-	
+
 	// metodos privados
-	
+
 	private void deletarPorEntidadeOuPorID(T t, PK pk) {
 		if (pk == null && (t == null || t.getId() == null)) {
-            throw new PersistenceException("Não foi possível deletar. O ID da entidade está nulo.");
-        }
+			throw new PersistenceException("Não foi possível deletar. O ID da entidade está nulo.");
+		}
 		PK id = pk;
-        if (id == null) {
-            id = (PK) t.getId();
-        }
-        T entidade = getEntityManager().getReference(entidadeClazz, id);
-        entityManager.remove(entidade);
+		if (id == null) {
+			id = (PK) t.getId();
+		}
+		T entidade = getEntityManager().getReference(entidadeClazz, id);
+		entityManager.remove(entidade);
 	}
-	
+
 	// getters and setters
-	
+
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

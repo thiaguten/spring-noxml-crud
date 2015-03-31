@@ -15,17 +15,17 @@ import br.com.thiaguten.spring.model.Usuario;
 public class UsuarioServiceImpl implements UsuarioService {
 
 	private final UsuarioDAO usuarioDAO;
-	
+
 	@Autowired
 	public UsuarioServiceImpl(UsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public Usuario salvarOuAtualizar(Usuario usuario) {
 		if (usuario.hasID()) {
-			return usuarioDAO.update(usuario);
+			return usuarioDAO.alterar(usuario);
 		} else {
 			return usuarioDAO.salvar(usuario);
 		}
@@ -38,10 +38,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public void deleteById(Long id) {
-		usuarioDAO.deleteById(id);
+	public void deletarPorId(Long id) {
+		usuarioDAO.deletarPorId(id);
 	}
-	
+
 	@Override
 	public List<Usuario> listar() {
 		return usuarioDAO.listar();
