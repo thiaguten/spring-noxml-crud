@@ -37,7 +37,7 @@ public abstract class AbstractDAO<T extends Persistable<? extends Serializable>,
 	}
 
 	protected List<T> pesquisarPorCriteria(List<Criterion> criterios) {
-		Criteria criteria = getSession().createCriteria(getEntidadeClazz());
+		Criteria criteria = getSession().createCriteria(entidadeClazz);
 		if (criterios != null) {
 			for (Criterion criterio : criterios) {
 				criteria.add(criterio);
@@ -47,7 +47,7 @@ public abstract class AbstractDAO<T extends Persistable<? extends Serializable>,
 	}
 
 	protected long contarPorCriteria(List<Criterion> criterios) {
-		Criteria criteria = getSession().createCriteria(getEntidadeClazz());
+		Criteria criteria = getSession().createCriteria(entidadeClazz);
 		criteria.setProjection(Projections.rowCount());
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		if (criterios != null) {

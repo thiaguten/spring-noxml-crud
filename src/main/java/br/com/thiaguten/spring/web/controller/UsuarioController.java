@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-//
-//import br.com.exemplo.model.Usuario;
-//import br.com.exemplo.service.UsuarioService;
 
 import br.com.thiaguten.spring.model.Usuario;
 import br.com.thiaguten.spring.service.UsuarioService;
