@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
@@ -19,6 +20,10 @@ import br.com.thiaguten.spring.model.base.AbstractModel;
 public class Usuario extends AbstractModel {
 
 	private static final long serialVersionUID = -5467564907381165L;
+
+	@Version
+	@Column(name = "VERSION")
+	private long version;
 
 	@Id
 	@Column(name = "ID", nullable = false)
@@ -48,6 +53,15 @@ public class Usuario extends AbstractModel {
 		this.nome = nome;
 		this.idade = idade;
 		this.email = email;
+	}
+
+	@Override
+	public long getVersion() {
+		return version;
+	}
+
+	public void setVersion(long version) {
+		this.version = version;
 	}
 
 	@Override
@@ -85,7 +99,7 @@ public class Usuario extends AbstractModel {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", idade=" + idade + ", email=" + email + "]";
+		return "Usuario [version=" + version + ", id=" + id + ", nome=" + nome + ", idade=" + idade + ", email=" + email + "]";
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -37,14 +38,15 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 
 	@Autowired
-	private Validator usuarioValidator;
+	@Qualifier("usuarioValidator")
+	private Validator validator;
 
 	@Autowired
 	private MessageSource messageSource;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setValidator(usuarioValidator);
+		binder.setValidator(validator);
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.GET)
@@ -71,7 +73,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/manter", method = { RequestMethod.GET, RequestMethod.POST })
-	public String manter(@Valid @ModelAttribute(USUARIO_KEY) Usuario usuario, BindingResult result, SessionStatus status) {
+	public String manter(@ModelAttribute(USUARIO_KEY) @Valid Usuario usuario, BindingResult result, SessionStatus status) {
 		if (!result.hasErrors()) {
 			usuarioService.salvarOuAtualizar(usuario);
 			status.setComplete();

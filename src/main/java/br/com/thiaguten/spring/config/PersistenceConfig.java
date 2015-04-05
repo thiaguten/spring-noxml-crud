@@ -23,7 +23,7 @@ public class PersistenceConfig {
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setPackagesToScan("br.com.thiaguten.spring.model");
 		em.setJpaVendorAdapter(vendorAdapter);
-		em.setJpaProperties(vendorAdapterProperties());
+		em.setJpaProperties(hibernateProperties());
 		return em;
 	}
 
@@ -34,22 +34,20 @@ public class PersistenceConfig {
 		return transactionManager;
 	}
 
-	private Properties vendorAdapterProperties() {
+	private Properties hibernateProperties() {
 		Properties properties = new Properties();
-		// hibernate
-		properties.setProperty("hibernate.dialect", org.hibernate.dialect.HSQLDialect.class.getName());
-		properties.setProperty("hibernate.show_sql", "false");
-		properties.setProperty("hibernate.format_sql", "false");
-		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-		// hikaricp
+		// hibernate-hikaricp connection pool
 		properties.setProperty("hibernate.connection.provider_class", com.zaxxer.hikari.hibernate.HikariConnectionProvider.class.getName());
 		properties.setProperty("hibernate.hikari.maximumPoolSize", "100");
 		properties.setProperty("hibernate.hikari.idleTimeout", "30000");
-		properties.setProperty("hibernate.hikari.connectionTestQuery", "SELECT * FROM INFORMATION_SCHEMA.SYSTEM_TABLES");
-		properties.setProperty("hibernate.hikari.dataSourceClassName", org.hsqldb.jdbc.JDBCDataSource.class.getName());
-		properties.setProperty("hibernate.hikari.dataSource.url", "jdbc:hsqldb:mem:dbteste");
-		properties.setProperty("hibernate.hikari.dataSource.user", "SA");
-		properties.setProperty("hibernate.hikari.dataSource.password", "");
+		// h2 database
+		properties.setProperty("hibernate.dialect", org.hibernate.dialect.H2Dialect.class.getName());
+		properties.setProperty("hibernate.hbm2ddl.auto", "create");
+		properties.setProperty("hibernate.hikari.connectionTestQuery", "SELECT 1");
+		properties.setProperty("hibernate.hikari.dataSourceClassName", org.h2.jdbcx.JdbcDataSource.class.getName());
+		properties.setProperty("hibernate.hikari.dataSource.url", "jdbc:h2:./target/h2db");
+		properties.setProperty("hibernate.hikari.dataSource.user", "sa");
+		properties.setProperty("hibernate.hikari.dataSource.password", "sa");
 		return properties;
 	}
 }

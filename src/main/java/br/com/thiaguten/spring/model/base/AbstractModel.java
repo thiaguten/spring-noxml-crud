@@ -1,6 +1,6 @@
 package br.com.thiaguten.spring.model.base;
 
-public abstract class AbstractModel implements Persistable<Long>/*, Versionable */{
+public abstract class AbstractModel implements Persistable<Long>, Versionable {
 
 	private static final long serialVersionUID = 1215051259136146694L;
 

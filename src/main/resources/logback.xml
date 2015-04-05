@@ -11,7 +11,7 @@
     <logger name="br.com.thiaguten.spring" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.hibernate" level="INFO"/>
-    <logger name="org.hsqldb" level="INFO"/>
+    <logger name="org.h2" level="INFO"/>
     <logger name="com.zaxxer" level="INFO"/>
     <logger name="org.junit" level="INFO"/>
 

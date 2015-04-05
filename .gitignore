@@ -12,6 +12,7 @@
 hs_err_pid*
 
 # Eclipse
+.tern-project
 .classpath
 .project
 .settings/

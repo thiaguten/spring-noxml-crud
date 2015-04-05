@@ -9,14 +9,14 @@
     <jsp:body>
         <c:url var="pesquisarUsuario" value="/usuario/pesquisar"/>
         <c:url var="adicionarUsuario" value="/usuario/novo"/>
+        <c:url var="alterarUsuario" value="/usuario/alterar"/>
+        <c:url var="removerUsuario" value="/usuario/remover"/>
 
         <table style="width: 100%;">
             <tr>
                 <td>
                     <form:form method="POST" action="${pesquisarUsuario}" commandName="usuario">
-                        <spring:hasBindErrors name="usuario">
-                            <form:errors path="*" element="div" cssClass="errorblock"/>
-                        </spring:hasBindErrors>
+                        <form:errors path="*" element="div" cssClass="errorblock"/>
 
                         <c:if test="${not empty usuario_mensagem_negocial}">
                             <div class="errorblock">${usuario_mensagem_negocial}</div>
@@ -28,18 +28,27 @@
                                 <td>
                                     <table style="width: 100%;" border="1">
                                         <tr>
-                                            <th><form:label path="nome"><spring:message
-                                                    code="label.nome"/></form:label></th>
+                                            <th>
+                                            	<form:label path="nome">
+                                            		<spring:message code="label.nome"/>
+                                                </form:label>
+                                            </th>
                                             <td><form:input path="nome" maxlength="100"/></td>
                                         </tr>
                                         <tr>
-                                            <th><form:label path="idade"><spring:message
-                                                    code="label.idade"/></form:label></th>
+                                            <th>
+                                            	<form:label path="idade">
+                                            		<spring:message code="label.idade"/>
+                                                </form:label>
+                                            </th>
                                             <td><form:input path="idade" maxlength="3"/></td>
                                         </tr>
                                         <tr>
-                                            <th><form:label path="email"><spring:message
-                                                    code="label.email"/></form:label></th>
+                                            <th>
+                                            	<form:label path="email">
+                                            		<spring:message code="label.email"/>
+                                                </form:label>
+                                            </th>
                                             <td><form:input path="email" maxlength="50"/></td>
                                         </tr>
                                     </table>
@@ -79,7 +88,7 @@
                                             <td><c:out value="${usr.idade}"/></td>
                                             <td><c:out value="${usr.email}"/></td>
                                             <td align="center">
-                                                <a href="<c:url value="/usuario/alterar/${usr.id}"/>">
+                                                <a href="${alterarUsuario}/${usr.id}">
                                                     <img width="16" height="16"
                                                          title="<spring:message code="label.alterar" />"
                                                          alt="<spring:message code="label.alterar" />"
@@ -87,7 +96,7 @@
                                                 </a>
                                             </td>
                                             <td align="center">
-                                                <a href="<c:url value="/usuario/remover/${usr.id}"/>">
+                                                <a href="${removerUsuario}/${usr.id}">
                                                     <img width="16" height="16"
                                                          title="<spring:message code="label.excluir" />"
                                                          alt="<spring:message code="label.excluir" />"
