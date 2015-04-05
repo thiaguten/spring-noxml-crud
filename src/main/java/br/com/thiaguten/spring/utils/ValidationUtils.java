@@ -12,7 +12,7 @@ public abstract class ValidationUtils extends org.springframework.validation.Val
 	public static void rejectIfEmailIsNotValid(Errors errors, String field, String errorCode, Object[] errorArgs, String defaultMessage) {
 		Assert.notNull(errors, "Errors object must not be null");
 		Object value = errors.getFieldValue(field);
-		if (!EmailUtils.isValid(value.toString())) {
+		if (value == null || !EmailUtils.isValid(value.toString())) {
 			errors.rejectValue(field, errorCode, errorArgs, defaultMessage);
 		}
 	}

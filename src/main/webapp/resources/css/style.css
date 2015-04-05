@@ -1,76 +1,53 @@
 @CHARSET "UTF-8";
 
-body {
-    /*	font-family: "Courier New", Courier, monospace;*/
-    font-family: Arial, Helvetica, sans-serif;
-    color: #000000;
-    background-color: #FFFFFF;
-    text-align: center;
-}
-
 th, thead {
-    text-align: center;
-    background-color: #90EE90;
+	text-align: center;
+	background-color: #90EE90;
+	padding: 5px;
+}
+/*
+input, button, textarea {
+	color: #000000;
+	background-color: #FFFFFF;
+	border: 1px #000000 solid;
 }
 
-input, textarea {
-    /*	font-family: "Courier New", Courier, monospace;*/
-    font-family: Arial, Helvetica, sans-serif;
-    color: #000000;
-    background-color: #FFFFFF;
-    border: 1px #000000 solid;
+input[type=submit], input[type=button], input[type=reset], button[type=submit],
+	button[type=button], button[type=reset] {
+	margin: 5px 5px 5px 0;
 }
-
-select {
-    /*	font-family: "Courier New", Courier, monospace;*/
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #FFFFFF;
-}
-
-input[type=submit], input[type=button], input[type=reset] {
-    margin: 5px 5px 5px 0;
-    cursor: pointer;
-}
-
+*/
 input[type="text"], input[type=password], textarea {
-    width: 100%;
-    box-sizing: border-box; /* Opera/IE 8+ */
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+	width: 100%; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a img {
-    border: none;
-    padding: 1px;
+	border: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
-
-.button a:link, a:visited, a:active {
-    text-decoration: none;
-}
-
-.button {
-    color: #000000;
-    cursor: pointer;
-    font: normal 11px Arial;
-    background-color: #FFFFFF;
-    padding: 2px 5px 3px 5px;
-    border: 1px #000000 solid;
+.link-button {
+	font-size: 12px; 
+	color: #000000;
+	background-color: #FFFFFF;
+	border: 1px #000000 solid;
+	text-decoration: none;
+	padding: 1px 6px 1px 6px;
 }
 
 .errorblock {
-    color: #000;
-    background-color: #ffEEEE;
-    border: 3px solid #ff0000;
-    padding: 8px;
-    margin: 16px;
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
 }
 
 #container {
-    text-align: left;
-    width: 800px;
-    margin: 0 auto;
+	text-align: left;
+	width: 800px;
+	margin: 0 auto;
+	padding-top: 10px;
 }

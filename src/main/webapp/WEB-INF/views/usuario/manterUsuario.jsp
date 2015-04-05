@@ -33,7 +33,7 @@
                                             		<spring:message code="label.nome"/>
                                             	</form:label>
                                             </th>
-                                            <td><form:input path="nome" maxlength="100"/></td>
+                                            <td><form:input path="nome" placeholder="Thiago" maxlength="100"/></td>
                                         </tr>
                                         <tr>
                                             <th>
@@ -41,7 +41,7 @@
                                             		<spring:message code="label.idade"/>
                                                 </form:label>
                                             </th>
-                                            <td><form:input path="idade" maxlength="3"/></td>
+                                            <td><form:input path="idade" placeholder="27" maxlength="3"/></td>
                                         </tr>
                                         <tr>
                                             <th>
@@ -49,13 +49,13 @@
                                             		<spring:message code="label.email"/>
                                                 </form:label>
                                             </th>
-                                            <td><form:input path="email" maxlength="50"/></td>
+                                            <td><form:input path="email" placeholder="email@email.com" maxlength="50"/></td>
                                         </tr>
                                     </table>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td style="padding-top: 10px;">
                                     <c:if test="${usuario.id eq null}">
                                         <input type="submit" value="<spring:message code="label.incluir"/>"/>
                                     </c:if>
@@ -63,11 +63,10 @@
                                         <input type="submit" value="<spring:message code="label.alterar"/>"/>
                                         <input type="reset" value="<spring:message code="label.resetar"/>"/>
                                     </c:if>
-                                    <span class="button">
-                                        <a href="${listarUsuario}">
-                                        	<spring:message code="label.voltar"/>
-                                       	</a>
-                                    </span>
+<%--                                     <a href="${listarUsuario}" class="link-button"><spring:message code="label.voltar"/></a> --%>
+                                    <button type="button" onclick="window.history.back()">
+                                   		<spring:message code="label.voltar"/>
+                                    </button>
                                 </td>
                             </tr>
                         </table>

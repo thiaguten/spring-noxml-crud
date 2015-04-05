@@ -55,7 +55,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td style="padding-top: 10px;">
                                     <input type="submit" value="<spring:message code="label.pesquisar"/>"/>
                                     <input type="reset" value="<spring:message code="label.resetar"/>"/>
                                 </td>
@@ -80,14 +80,14 @@
                                         <th colspan=2><spring:message code="label.acao"/></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody align="center">
                                     <c:forEach items="${usuarios}" var="usr">
                                         <tr>
                                             <td><c:out value="${usr.id}"/></td>
                                             <td><c:out value="${usr.nome}"/></td>
                                             <td><c:out value="${usr.idade}"/></td>
                                             <td><c:out value="${usr.email}"/></td>
-                                            <td align="center">
+                                            <td>
                                                 <a href="${alterarUsuario}/${usr.id}">
                                                     <img width="16" height="16"
                                                          title="<spring:message code="label.alterar" />"
@@ -95,7 +95,7 @@
                                                          src="<c:url value="/resources/img/edit.gif" />">
                                                 </a>
                                             </td>
-                                            <td align="center">
+                                            <td>
                                                 <a href="${removerUsuario}/${usr.id}">
                                                     <img width="16" height="16"
                                                          title="<spring:message code="label.excluir" />"
@@ -111,11 +111,9 @@
                         </tr>
                         <tr>
                             <td style="padding-top: 10px;">
-                                <span class="button">
-                                    <a href="${adicionarUsuario}">
-                                        <spring:message code="label.adicionar.usuario"/>
-                                    </a>
-                                </span>
+	                            <form action="${adicionarUsuario}">
+	                            	<input type="submit" value="<spring:message code="label.adicionar.usuario"/>"/>
+	                            </form>
                             </td>
                         </tr>
                     </table>
