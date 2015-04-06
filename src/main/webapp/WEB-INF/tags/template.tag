@@ -2,7 +2,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ attribute name="title" fragment="true"%>
 <%@ attribute name="header" fragment="true"%>
 <%@ attribute name="menu" fragment="true"%>
@@ -24,10 +24,10 @@
 		<!-- header -->
 		<div id="header">
 			<span style="float: right;">
-				<spring:message code="label.idioma" />: 
-				<a href="?lang=en"><spring:message code="label.ingles" /></a>
+				<strong><s:message code="label.idioma" />:</strong> 
+				<a href="?lang=en"><s:message code="label.ingles" /></a>
 				 | 
-				 <a href="?lang=pt_BR"><spring:message code="label.portugues" /></a>
+				 <a href="?lang=pt_BR"><s:message code="label.portugues" /></a>
 			</span>
 			<jsp:invoke fragment="header" />
 		</div>
@@ -47,7 +47,7 @@
 			<jsp:invoke fragment="footer" />
 			<hr />
 			<div style="text-align: center;">
-				<code>&#169; <fmt:formatDate pattern="yyyy" value="${data}" /> Thiago Gutenberg</code>
+				<code>&#169;<fmt:formatDate pattern="yyyy" value="${data}" /> Thiago Gutenberg</code>
 			</div>
 		</div>
 		

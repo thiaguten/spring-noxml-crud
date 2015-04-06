@@ -16,24 +16,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-				.passwordEncoder(getPasswordEncoder())
+		auth
+			.inMemoryAuthentication()
+			.passwordEncoder(passwordEncoder())
 				.withUser("admin")
 				.password("$2a$05$uYs.4IMu07yj68Oy9KRWoOEHOos2WIFUNk5bg5eGRRhWF/n2Skmwq")
 				.roles("ADMIN");
 	}
 
-	@Bean(name = "passwordEncoder")
-	public PasswordEncoder getPasswordEncoder() {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.authorizeRequests()
+				.antMatchers("/", "/resources/**", "/usuario/pesquisar", "/usuario/listar").permitAll()
+				.anyRequest().authenticated()
+				.and()
+			.httpBasic();
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(5);
 		return passwordEncoder;
 	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.antMatchers("/", "/usuario/pesquisar", "/usuario/listar")
-				.permitAll().anyRequest().authenticated().and().httpBasic();
-	}
-
 }

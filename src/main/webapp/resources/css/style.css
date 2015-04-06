@@ -5,7 +5,7 @@ th, thead {
 	background-color: #90EE90;
 	padding: 5px;
 }
-/*
+
 input, button, textarea {
 	color: #000000;
 	background-color: #FFFFFF;
@@ -16,9 +16,10 @@ input[type=submit], input[type=button], input[type=reset], button[type=submit],
 	button[type=button], button[type=reset] {
 	margin: 5px 5px 5px 0;
 }
-*/
+
 input[type="text"], input[type=password], textarea {
-	width: 100%; 
+	width: 100%;
+	padding: 5px 1px 5px 1px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -29,7 +30,7 @@ a img {
 }
 
 .link-button {
-	font-size: 12px; 
+	font-size: 12px;
 	color: #000000;
 	background-color: #FFFFFF;
 	border: 1px #000000 solid;

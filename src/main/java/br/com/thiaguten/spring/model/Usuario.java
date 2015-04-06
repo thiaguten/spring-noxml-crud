@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Version;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
@@ -21,8 +21,9 @@ public class Usuario extends AbstractModel {
 
 	private static final long serialVersionUID = -5467564907381165L;
 
-	@Version
-	@Column(name = "VERSION")
+	@Transient
+//	@Version
+//	@Column(name = "VERSION")
 	private long version;
 
 	@Id
