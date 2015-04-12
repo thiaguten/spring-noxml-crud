@@ -15,9 +15,9 @@ import java.util.regex.Pattern;
  */
 public abstract class EmailUtils {
 
-	private static String ATOM = "[a-z0-9!#$%&'*+/=?^_`{|}~-]";
-	private static String DOMAIN = ATOM + "+(\\." + ATOM + "+)*";
-	private static String IP_DOMAIN = "\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\]";
+	private static final String ATOM = "[a-z0-9!#$%&'*+/=?^_`{|}~-]";
+	private static final String DOMAIN = ATOM + "+(\\." + ATOM + "+)*";
+	private static final String IP_DOMAIN = "\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\]";
 	
 	/**
 	 * Regular expression for the local part of an email address (everything before '@')

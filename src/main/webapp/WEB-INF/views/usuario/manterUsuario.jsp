@@ -10,13 +10,13 @@
     	<script type="text/javascript">
 	    	function isNumberKey(evt)
 	        {
-	           var charCode = (evt.which) ? evt.which : event.keyCode
+	           var charCode = (evt.which) ? evt.which : event.keyCode;
 	           if (charCode > 31 && (charCode < 48 || charCode > 57))
 	              return false;
 	           return true;
 	        }
     	</script>
-    
+
         <c:url var="manterUsuario" value="/usuario/manter"/>
         <c:url var="listarUsuario" value="/usuario/listar"/>
 
