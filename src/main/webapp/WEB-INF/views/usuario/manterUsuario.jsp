@@ -7,16 +7,6 @@
     </jsp:attribute>
 
     <jsp:body>
-    	<script type="text/javascript">
-	    	function isNumberKey(evt)
-	        {
-	           var charCode = (evt.which) ? evt.which : event.keyCode;
-	           if (charCode > 31 && (charCode < 48 || charCode > 57))
-	              return false;
-	           return true;
-	        }
-    	</script>
-
         <c:url var="manterUsuario" value="/usuario/manter"/>
         <c:url var="listarUsuario" value="/usuario/listar"/>
 
@@ -33,33 +23,36 @@
                         <sf:hidden path="id"/>
 
                         <table style="width: 100%;">
-                            <caption style="font-size: larger;font-weight: bolder;"><s:message code="label.manter.usuario"/></caption>
+                            <caption style="font-size: larger;font-weight: bolder;"><s:message
+                                    code="label.manter.usuario"/></caption>
                             <tr>
                                 <td>
                                     <table style="width: 100%;" border="1">
                                         <tr>
                                             <th>
-                                            	<sf:label path="nome">
-                                            		<s:message code="label.nome"/>
-                                            	</sf:label>
+                                                <sf:label path="nome">
+                                                    <s:message code="label.nome"/>
+                                                </sf:label>
                                             </th>
                                             <td><sf:input path="nome" placeholder="Thiago" maxlength="100"/></td>
                                         </tr>
                                         <tr>
                                             <th>
-                                            	<sf:label path="idade">
-                                            		<s:message code="label.idade"/>
+                                                <sf:label path="idade">
+                                                    <s:message code="label.idade"/>
                                                 </sf:label>
                                             </th>
-                                            <td><sf:input path="idade" placeholder="27" onkeypress="return isNumberKey(event);" maxlength="3"/></td>
+                                            <td><sf:input path="idade" placeholder="27"
+                                                          onkeypress="return isNumberKey(event);" maxlength="3"/></td>
                                         </tr>
                                         <tr>
                                             <th>
-                                            	<sf:label path="email">
-                                            		<s:message code="label.email"/>
+                                                <sf:label path="email">
+                                                    <s:message code="label.email"/>
                                                 </sf:label>
                                             </th>
-                                            <td><sf:input path="email" placeholder="email@email.com" maxlength="50"/></td>
+                                            <td><sf:input path="email" placeholder="email@email.com"
+                                                          maxlength="50"/></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -73,9 +66,9 @@
                                         <input type="submit" value="<s:message code="label.alterar"/>"/>
                                         <input type="reset" value="<s:message code="label.resetar"/>"/>
                                     </c:if>
-									<button type="button" onclick="location.href='${listarUsuario}'">
-										<s:message code="label.voltar"/>
-									</button>
+                                    <button type="button" onclick="location.href='${listarUsuario}'">
+                                        <s:message code="label.voltar"/>
+                                    </button>
                                 </td>
                             </tr>
                         </table>

@@ -1,34 +1,35 @@
 @CHARSET "UTF-8";
 
 th, thead {
-	text-align: center;
-	background-color: #90EE90;
-	padding: 5px;
+    text-align: center;
+    background-color: #90EE90;
+    padding: 5px;
 }
 
 input, button, textarea {
-	color: #000000;
-	background-color: #FFFFFF;
-	border: 1px #000000 solid;
+    color: #000000;
+    background-color: #FFFFFF;
+    border: 1px #000000 solid;
 }
 
 input[type=submit], input[type=button], input[type=reset], button[type=submit],
-	button[type=button], button[type=reset] {
-	margin: 5px 5px 5px 0;
+button[type=button], button[type=reset] {
+    margin: 5px 5px 5px 0;
 }
 
 input[type="text"], input[type=password], textarea {
-	width: 100%;
-	padding: 5px 1px 5px 1px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+    width: 100%;
+    padding: 5px 1px 5px 1px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 a img {
-	border: none;
+    border: none;
 }
 
+/*
 .link-button {
 	font-size: 12px;
 	color: #000000;
@@ -37,18 +38,19 @@ a img {
 	text-decoration: none;
 	padding: 1px 6px 1px 6px;
 }
+*/
 
 .errorblock {
-	color: #000;
-	background-color: #ffEEEE;
-	border: 3px solid #ff0000;
-	padding: 8px;
-	margin: 16px;
+    color: #000;
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    padding: 8px;
+    margin: 16px;
 }
 
 #container {
-	text-align: left;
-	width: 800px;
-	margin: 0 auto;
-	padding-top: 10px;
+    text-align: left;
+    width: 800px;
+    margin: 0 auto;
+    padding-top: 10px;
 }

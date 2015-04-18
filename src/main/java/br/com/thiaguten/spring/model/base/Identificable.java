@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 public interface Identificable<PK extends Serializable> {
 
-	PK getId();
+    PK getId();
 
 }

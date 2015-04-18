@@ -14,29 +14,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.inMemoryAuthentication()
-			.passwordEncoder(passwordEncoder())
-				.withUser("admin")
-                //123456
-				.password("$2a$05$uYs.4IMu07yj68Oy9KRWoOEHOos2WIFUNk5bg5eGRRhWF/n2Skmwq")
-				.roles("ADMIN");
-	}
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .inMemoryAuthentication()
+                .passwordEncoder(passwordEncoder())
+                .withUser("admin")
+                        //123456
+                .password("$2a$05$uYs.4IMu07yj68Oy9KRWoOEHOos2WIFUNk5bg5eGRRhWF/n2Skmwq")
+                .roles("ADMIN");
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-				.antMatchers("/", "/resources/**", "/usuario/pesquisar", "/usuario/listar").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.httpBasic();
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/", "/resources/**", "/usuario/pesquisar", "/usuario/listar").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .httpBasic();
+    }
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(5);
-	}
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(5);
+    }
 }

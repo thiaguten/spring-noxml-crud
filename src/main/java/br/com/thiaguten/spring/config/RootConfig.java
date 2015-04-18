@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @ComponentScan(
-		basePackages = { "br.com.thiaguten.spring" }, 
-		excludeFilters = { @Filter(type = FilterType.ANNOTATION, value = Configuration.class) }
+        basePackages = {"br.com.thiaguten.spring"},
+        excludeFilters = {@Filter(type = FilterType.ANNOTATION, value = Configuration.class)}
 )
-@Import(value = { PersistenceConfig.class })
+@Import(value = {PersistenceConfig.class})
 public class RootConfig {
 
 }

@@ -23,30 +23,32 @@
                         </c:if>
 
                         <table style="width: 100%;">
-                            <caption style="font-size: larger;font-weight: bolder;"><s:message code="label.pesquisar.usuario"/></caption>
+                            <caption style="font-size: larger;font-weight: bolder;"><s:message
+                                    code="label.pesquisar.usuario"/></caption>
                             <tr>
                                 <td>
                                     <table style="width: 100%;" border="1">
                                         <tr>
                                             <th>
-                                            	<sf:label path="nome">
-                                            		<s:message code="label.nome"/>
+                                                <sf:label path="nome">
+                                                    <s:message code="label.nome"/>
                                                 </sf:label>
                                             </th>
                                             <td><sf:input path="nome" maxlength="100"/></td>
                                         </tr>
                                         <tr>
                                             <th>
-                                            	<sf:label path="idade">
-                                            		<s:message code="label.idade"/>
+                                                <sf:label path="idade">
+                                                    <s:message code="label.idade"/>
                                                 </sf:label>
                                             </th>
-                                            <td><sf:input path="idade" maxlength="3"/></td>
+                                            <td><sf:input path="idade" onkeypress="return isNumberKey(event);"
+                                                          maxlength="3"/></td>
                                         </tr>
                                         <tr>
                                             <th>
-                                            	<sf:label path="email">
-                                            		<s:message code="label.email"/>
+                                                <sf:label path="email">
+                                                    <s:message code="label.email"/>
                                                 </sf:label>
                                             </th>
                                             <td><sf:input path="email" maxlength="50"/></td>
@@ -67,7 +69,8 @@
             <tr>
                 <td>
                     <table style="width: 100%;">
-                        <caption style="font-size: larger;font-weight: bolder;"><s:message code="label.listar.usuario"/></caption>
+                        <caption style="font-size: larger;font-weight: bolder;"><s:message
+                                code="label.listar.usuario"/></caption>
                         <tr>
                             <td>
                                 <table style="width: 100%;" border=1>
@@ -111,9 +114,9 @@
                         </tr>
                         <tr>
                             <td style="padding-top: 10px;">
-	                            <form action="${adicionarUsuario}">
-	                            	<input type="submit" value="<s:message code="label.adicionar.usuario"/>"/>
-	                            </form>
+                                <form action="${adicionarUsuario}">
+                                    <input type="submit" value="<s:message code="label.adicionar.usuario"/>"/>
+                                </form>
                             </td>
                         </tr>
                     </table>

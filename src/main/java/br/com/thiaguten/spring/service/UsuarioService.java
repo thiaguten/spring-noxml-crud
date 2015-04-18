@@ -1,21 +1,21 @@
 package br.com.thiaguten.spring.service;
 
-import java.util.List;
-
 import br.com.thiaguten.spring.model.Usuario;
+
+import java.util.List;
 
 public interface UsuarioService {
 
-	boolean isEmailJaCadastrado(Usuario usuario);
+    boolean isEmailJaCadastrado(Usuario usuario);
 
-	Usuario salvarOuAtualizar(Usuario usuario);
+    Usuario salvarOuAtualizar(Usuario usuario);
 
-	Usuario recuperar(Long id);
+    Usuario recuperar(Long id);
 
-	void deletarPorId(Long id);
+    void deletarPorId(Long id);
 
-	List<Usuario> listar();
+    List<Usuario> listar();
 
-	List<Usuario> pesquisar(Usuario usuario);
+    List<Usuario> pesquisar(Usuario usuario);
 
 }
