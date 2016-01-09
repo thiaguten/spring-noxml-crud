@@ -4,8 +4,41 @@
 
     <groupId>br.com.thiaguten.spring</groupId>
     <artifactId>spring-noxml-crud</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
+
+    <name>spring-crud</name>
+    <description>Java EE 7 No XML WebApplication - Spring 4.x + Spring Security 4.x + Hibernate (EntityManager) 4.x + HikariCP 2.x</description>
+    <url>https://github.com/thiaguten/spring-noxml-crud</url>
+
+    <inceptionYear>2015</inceptionYear>
+
+    <organization>
+        <name>www.thiaguten.com.br</name>
+        <url>https://github.com/thiaguten</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>BSD 3-Clause License</name>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Thiago Gutenberg Carvalho da Costa</name>
+            <email>thiaguten@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:thiaguten/spring-noxml-crud.git</connection>
+        <developerConnection>scm:git:git@github.com:thiaguten/spring-noxml-crud.git</developerConnection>
+        <url>git@github.com:thiaguten/spring-noxml-crud.git</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <!-- http://www.slf4j.org/faq.html#excludingJCL -->
     <repositories>
@@ -17,6 +50,7 @@
     </repositories>
 
     <dependencyManagement>
+        <!-- fix for springframework logging -->
         <dependencies>
             <dependency>
                 <groupId>commons-logging</groupId>
@@ -33,68 +67,47 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-            <plugin>
-                <inherited>true</inherited>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven.war.plugin}</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <!-- java ee -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${javax.servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.1</version>
+            <version>${javax.servlet.jsp-api.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>2.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>el-impl</artifactId>
-            <version>2.2</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
             <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-            <version>1.2.1</version>
+            <version>${javax.servlet.jsp.jstl-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${javax.el-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>el-impl</artifactId>
+            <version>${el-impl.version}</version>
         </dependency>
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
-            <version>1.1.2</version>
+            <version>${standard.version}</version>
         </dependency>
 
         <!-- validation -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
+            <version>${validation-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -102,7 +115,7 @@
             <version>${hibernate-validator.version}</version>
         </dependency>
 
-        <!-- spring -->
+        <!-- springframework -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
@@ -130,12 +143,13 @@
             <version>${spring-security.version}</version>
         </dependency>
 
-        <!-- persistence -->
+        <!-- database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>${h2.version}</version>
         </dependency>
+        <!-- connection pool -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP-java6</artifactId>
@@ -152,10 +166,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- persistence api -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
+            <groupId>br.com.thiaguten.persistence</groupId>
+            <artifactId>simple-dao</artifactId>
+            <version>${simple-dao.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.jpa</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- log -->
@@ -196,22 +217,92 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.8</version>
+                <configuration>
+                    <verbose>false</verbose>
+                    <addSvnKeyWords>true</addSvnKeyWords>
+                    <organizationName>Thiago Gutenberg Carvalho da Costa.</organizationName>
+                    <descriptionTemplate>${project.basedir}/src/license/header.ftl</descriptionTemplate>
+                    <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+                    <licenseName>bsd_3</licenseName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>update-file-header</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*.xml</exclude>
+                                <exclude>**/*.xsd</exclude>
+                                <exclude>**/*.jsp</exclude>
+                                <exclude>**/*.tag</exclude>
+                                <exclude>**/*.js</exclude>
+                                <exclude>**/*.properties</exclude>
+                                <exclude>**/*.css</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.6.v20151106</version>
+                <configuration>
+                    <webApp>
+                        <contextPath>/spring-noxml-crud</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <properties>
         <java.version>1.7</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.plugin>3.2</maven.compiler.plugin>
-        <maven.war.plugin>2.6</maven.war.plugin>
-
-        <spring.bom.version>4.1.6.RELEASE</spring.bom.version>
-        <spring-security.version>4.0.0.RELEASE</spring-security.version>
-        <hibernate.version>4.3.8.Final</hibernate.version>
-        <hibernate-validator.version>5.1.3.Final</hibernate-validator.version>
-        <h2.version>1.4.186</h2.version>
-        <hikaricp.version>2.3.5</hikaricp.version>
-        <slf4j.version>1.7.10</slf4j.version>
+        <spring.bom.version>4.2.4.RELEASE</spring.bom.version>
+        <spring-security.version>4.0.3.RELEASE</spring-security.version>
+        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hibernate-validator.version>5.2.2.Final</hibernate-validator.version>
+        <h2.version>1.4.190</h2.version>
+        <hikaricp.version>2.3.12</hikaricp.version>
+        <slf4j.version>1.7.13</slf4j.version>
         <logback.version>1.1.3</logback.version>
         <junit.version>4.12</junit.version>
+        <validation-api.version>1.1.0.Final</validation-api.version>
+        <standard.version>1.1.2</standard.version>
+        <javax.servlet.jsp.jstl-api.version>1.2.1</javax.servlet.jsp.jstl-api.version>
+        <el-impl.version>2.2</el-impl.version>
+        <javax.el-api.version>3.0.0</javax.el-api.version>
+        <javax.servlet.jsp-api.version>2.3.1</javax.servlet.jsp-api.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <simple-dao.version>1.0.1</simple-dao.version>
     </properties>
 
 </project>

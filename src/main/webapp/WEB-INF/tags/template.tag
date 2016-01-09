@@ -25,12 +25,12 @@
 
     <!-- header -->
     <div id="header">
-			<span style="float: right;">
-				<strong><s:message code="label.idioma"/>:</strong>
-				<a href="?lang=en"><s:message code="label.ingles"/></a>
-				 | 
-				 <a href="?lang=pt_BR"><s:message code="label.portugues"/></a>
-			</span>
+        <span style="float: right;">
+            <strong><s:message code="label.idioma"/>:</strong>
+            <a href="?lang=en"><s:message code="label.ingles"/></a>
+            |
+            <a href="?lang=pt_BR"><s:message code="label.portugues"/></a>
+        </span>
         <jsp:invoke fragment="header"/>
     </div>
 

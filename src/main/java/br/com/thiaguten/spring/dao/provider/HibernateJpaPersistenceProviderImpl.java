@@ -29,42 +29,24 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  * #L%
  */
-package br.com.thiaguten.spring.config.initializer;
+package br.com.thiaguten.spring.dao.provider;
 
-import br.com.thiaguten.spring.config.RootConfig;
-import br.com.thiaguten.spring.config.SecurityConfig;
-import br.com.thiaguten.spring.config.WebAppConfig;
-import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import br.com.thiaguten.persistence.provider.hibernate.HibernateJpaPersistenceProvider;
 
-import javax.servlet.Filter;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-public class WebMvcAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class HibernateJpaPersistenceProviderImpl extends HibernateJpaPersistenceProvider {
 
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return new Class<?>[]{RootConfig.class, SecurityConfig.class};
-    }
+    private EntityManager entityManager;
 
     @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class<?>[]{WebAppConfig.class};
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
-    }
-
-    @Override
-    protected Filter[] getServletFilters() {
-        return new Filter[]{getCharacterEncodingFilter()};
-    }
-
-    private CharacterEncodingFilter getCharacterEncodingFilter() {
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-        return characterEncodingFilter;
+    @PersistenceContext
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
     }
 }
