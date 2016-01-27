@@ -31,9 +31,7 @@
  */
 package br.com.thiaguten.spring.config;
 
-import br.com.thiaguten.persistence.provider.PersistenceProvider;
-import br.com.thiaguten.persistence.provider.hibernate.HibernateCriteriaPersistenceProvider;
-import br.com.thiaguten.persistence.provider.hibernate.HibernateJpaPersistenceProvider;
+import br.com.thiaguten.persistence.spi.provider.hibernate.HibernateCriteriaPersistenceProvider;
 import br.com.thiaguten.spring.dao.provider.HibernateJpaPersistenceProviderImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

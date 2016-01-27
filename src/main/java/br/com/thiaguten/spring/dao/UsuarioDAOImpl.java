@@ -32,7 +32,7 @@
 package br.com.thiaguten.spring.dao;
 
 import br.com.thiaguten.persistence.dao.GenericBaseDAO;
-import br.com.thiaguten.persistence.provider.hibernate.HibernateCriteriaPersistenceProvider;
+import br.com.thiaguten.persistence.spi.provider.hibernate.HibernateCriteriaPersistenceProvider;
 import br.com.thiaguten.spring.model.Usuario;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;

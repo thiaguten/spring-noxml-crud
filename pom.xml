@@ -7,7 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>spring-crud</name>
+    <name>SpringNoXmlCrud</name>
     <description>Java EE 7 No XML WebApplication - Spring 4.x + Spring Security 4.x + Hibernate (EntityManager) 4.x + HikariCP 2.x</description>
     <url>https://github.com/thiaguten/spring-noxml-crud</url>
 
@@ -29,9 +29,19 @@
         <developer>
             <name>Thiago Gutenberg Carvalho da Costa</name>
             <email>thiaguten@gmail.com</email>
-            <timezone>-3</timezone>
+            <url>http://www.thiaguten.com.br</url>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>America/Sao_Paulo</timezone>
         </developer>
     </developers>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/thiaguten/spring-noxml-crud/issues</url>
+    </issueManagement>
 
     <scm>
         <connection>scm:git:git@github.com:thiaguten/spring-noxml-crud.git</connection>
@@ -169,14 +179,8 @@
         <!-- persistence api -->
         <dependency>
             <groupId>br.com.thiaguten.persistence</groupId>
-            <artifactId>simple-dao</artifactId>
-            <version>${simple-dao.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.persistence</groupId>
-                    <artifactId>org.eclipse.persistence.jpa</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>simple-dao-hibernate</artifactId>
+            <version>${simple-dao-hibernate.version}</version>
         </dependency>
 
         <!-- log -->
@@ -222,7 +226,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.5</version>
                 <inherited>true</inherited>
                 <configuration>
                     <source>${java.version}</source>
@@ -302,7 +306,7 @@
         <javax.el-api.version>3.0.0</javax.el-api.version>
         <javax.servlet.jsp-api.version>2.3.1</javax.servlet.jsp-api.version>
         <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
-        <simple-dao.version>1.0.1</simple-dao.version>
+        <simple-dao-hibernate.version>1.0.0</simple-dao-hibernate.version>
     </properties>
 
 </project>
